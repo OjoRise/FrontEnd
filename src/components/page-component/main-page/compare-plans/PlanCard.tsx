@@ -3,17 +3,42 @@ import type { Plan } from "@/types/plan";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import TextsmsIcon from "@mui/icons-material/Textsms";
 import FiveGIcon from "@mui/icons-material/FiveG";
+import LteMobiledataIcon from "@mui/icons-material/LteMobiledata";
+import { deleteRecommendedPlan } from "@/services/recommenendPlanService";
+import { deleteLikedPlan } from "@/services/dipPlanService";
 
 export default function PlanCard(props: Plan) {
-  const { label, title, description, price, discountedPrice, onRemove } = props;
+  const {
+    planId,
+    name,
+    baseDataGb,
+    monthlyFee,
+    voiceCallPrice,
+    sms,
+    description,
+    mobileType,
+    onRemove,
+    source,
+  } = props;
 
   const selectedPlans = usePlanStore((state) => state.selectedPlans);
   const togglePlanSelection = usePlanStore((state) => state.togglePlanSelection);
 
-  const isSelected = selectedPlans.some((p) => p.title === title);
+  const isSelected = selectedPlans.some((p) => p.name === name && p.source === source);
 
   const handleSelect = () => {
-    togglePlanSelection({ label, title, description, price, discountedPrice });
+    togglePlanSelection({
+      planId,
+      name,
+      baseDataGb,
+      monthlyFee,
+      voiceCallPrice,
+      sms,
+      description,
+      mobileType,
+      onRemove,
+      source,
+    });
   };
 
   return (
@@ -25,9 +50,22 @@ export default function PlanCard(props: Plan) {
     >
       {onRemove && (
         <button
-          onClick={(e) => {
+          onClick={async (e) => {
             e.stopPropagation();
-            onRemove();
+
+            try {
+              if (props.source === "recommend") {
+                await deleteRecommendedPlan(planId);
+              } else if (props.source === "like") {
+                await deleteLikedPlan(planId);
+              } else {
+                console.warn("삭제 타입 미지정");
+              }
+
+              onRemove();
+            } catch (err) {
+              console.error("삭제 실패:", err);
+            }
           }}
           className="absolute top-2 right-2 text-gray-400 hover:text-red-500 z-10"
         >
@@ -36,33 +74,42 @@ export default function PlanCard(props: Plan) {
       )}
 
       <span className="inline-block text-xs font-semibold px-3 py-1 bg-[#FAD0E1] text-[#E2217E] rounded w-fit">
-        {label}
+        {mobileType}
       </span>
 
-      <h3 className="text-2xl font-bold">{title}</h3>
+      <h3 className="text-2xl font-bold">{name}</h3>
 
       <div className="flex gap-2 text-sm font-medium mt-1 mb-1">
         <span className="flex items-center gap-1 px-2 py-2 bg-pink-50 text-gray-700 rounded-md font-bold">
-          <FiveGIcon fontSize="small" style={{ color: "black" }} />
-          무제한
+          {mobileType === "5G" ? (
+            <>
+              <FiveGIcon fontSize="small" style={{ color: "black" }} />
+              {baseDataGb.includes("무제한") ? "무제한" : `${baseDataGb}GB`}
+            </>
+          ) : (
+            <>
+              <LteMobiledataIcon fontSize="small" style={{ color: "black" }} />
+              {baseDataGb.includes("무제한") ? "무제한" : `${baseDataGb}GB`}
+            </>
+          )}
         </span>
         <span className="flex items-center gap-1 px-2 py-2 bg-pink-50 text-gray-700 rounded-md font-bold">
           <TextsmsIcon fontSize="small" style={{ color: "black" }} />
-          무제한
+          {sms}
         </span>
         <span className="flex items-center gap-1 px-2 py-2 bg-pink-50 text-gray-700 rounded-md font-bold">
           <LocalPhoneIcon fontSize="small" style={{ color: "black" }} />
-          무제한
+          {voiceCallPrice}
         </span>
       </div>
 
       <p className="text-sm tracking-tighter text-gray-800">{description}</p>
 
       <div className="flex justify-between items-end mt-3">
-        <p className="text-xl font-bold">월 {price.toLocaleString()}원</p>
-        {discountedPrice && (
+        <p className="text-xl font-bold">월 {monthlyFee.toLocaleString()}원</p>
+        {monthlyFee && (
           <p className="text-xs text-gray-400 whitespace-nowrap">
-            약정 할인 시 월 {discountedPrice.toLocaleString()}원
+            약정 할인 시 월 {monthlyFee.toLocaleString()}원
           </p>
         )}
       </div>

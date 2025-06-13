@@ -14,10 +14,10 @@ export default function SelectedPlanViewer() {
       <div className="flex flex-col gap-2">
         {selectedPlans.map((plan) => (
           <div
-            key={plan.title}
+            key={plan.name}
             className="px-10 py-6 rounded-xl bg-white shadow-md text-xl font-semibold text-center w-fit"
           >
-            {plan.title}
+            {plan.name}
           </div>
         ))}
       </div>

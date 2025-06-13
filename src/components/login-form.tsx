@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToastStore } from "@/stores/toastStore"; // ← Zustand toast store
-import { buildSearchParams } from "@/utils/requestHelper";
+// import { buildSearchParams } from "@/utils/requestHelper";
 
 export function LoginForm({ className, ...props }: React.ComponentProps<"div">) {
   const { showErrorFromApi, showToast } = useToastStore();
@@ -30,13 +30,13 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
   };
 
   const handleKakaoLogin = () => {
-    const params = buildSearchParams({
-      client_id: process.env.NEXT_PUBLIC_KAKAO_REST_API_KEY,
-      redirect_uri: process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI,
-      response_type: "code",
-    });
+    // const params = buildSearchParams({
+    //   client_id: process.env.NEXT_PUBLIC_KAKAO_REST_API_KEY,
+    //   redirect_uri: process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI,
+    //   response_type: "code",
+    // });
 
-    const kakaoAuthUrl = `https://kauth.kakao.com/oauth/authorize${params}`;
+    const kakaoAuthUrl = "http://localhost:8080/ojoRise/auth/kakao/login";
     window.location.href = kakaoAuthUrl;
   };
 

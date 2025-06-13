@@ -1,8 +1,8 @@
 import ScrollChart from "./compare-chart/ScrollChart";
-import CompareModeToggle from "./recommanded-list/CompareModeToggle";
-import LikedPlansList from "./recommanded-list/LikedPlansList";
-import RecommendedPlanList from "./recommanded-list/RecommendedPlanList";
-import SelectedPlanViewer from "./recommanded-list/SelectedPlanViewer";
+import CompareModeToggle from "./compare-plans/CompareModeToggle";
+import LikedPlansList from "./liked-list/LikedPlansList";
+import RecommendedPlanList from "./compare-plans/RecommendedPlanList";
+import SelectedPlanViewer from "./compare-plans/SelectedPlanViewer";
 
 export default function MainPage() {
   return (
@@ -13,7 +13,7 @@ export default function MainPage() {
         <RecommendedPlanList />
         <LikedPlansList />
         <SelectedPlanViewer />
-        <ScrollChart/>
+        <ScrollChart />
       </section>
     </main>
   );
