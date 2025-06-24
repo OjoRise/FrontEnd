@@ -225,6 +225,22 @@ function ChatBotModal() {
 
           if (statusRef.current) setHistory((prev) => [...prev, message]);
 
+          if (itemsRef.current) {
+            const plans = itemsRef.current.map((item) => item.name);
+            try {
+              const res = await api(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/recommendations`, {
+                method: "POST",
+                data: { planNames: plans },
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              });
+              console.log(res.status);
+            } catch (error) {
+              console.log(error);
+            }
+          }
+
           throttledUpdateDialog(botBlock);
           break;
         }
@@ -417,9 +433,9 @@ function ChatBotModal() {
         className={`${
           !isMobile
             ? zoom
-              ? "fixed bottom-0 left-0 max-w-[100%] h-screen z-50 bg-white"
+              ? "fixed bottom-0 left-0 max-w-[100%] h-screen z-50"
               : "w-1/2 max-w-[650px] h-[80vh]"
-            : "fixed bottom-0 left-0 max-w-[100%] h-screen z-50 bg-white"
+            : "fixed bottom-0 left-0 max-w-[100%] h-screen z-50"
         } ml-auto pr-2 pl-2 flex flex-col`}
       >
         <DrawerHeader className="flex flex-row justify-between border-b border-gray-200">
@@ -458,7 +474,8 @@ function ChatBotModal() {
                 i === dialog.length - 1 &&
                 item.block !== initialGuestDialog.block &&
                 item.block !== initialLoginDialog.block ? (
-                  <div className="ml-2 mb-2">
+                  <div className="flex ml-1 mt-2">
+                    <div className="w-[48px] h-[24px]" />
                     <Button
                       variant="outline"
                       size="sm"
