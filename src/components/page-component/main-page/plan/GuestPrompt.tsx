@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button";
 import { MessageCircle } from "lucide-react";
 import { useAuthStore } from "@/stores/authStore";
-import PlanInfoLoggedIn from "./PlanInfoLoggedIn";
 
 const Account = [
     {
@@ -41,28 +40,12 @@ const Account = [
 
 export default function GuestPrompt() {
     const setIsGuest = useAuthStore((state) => state.setIsGuest);
-    const { username, isGuest, isSurveyed, selectedPlan } = useAuthStore();
+    const {  isGuest } = useAuthStore();
 
     const handleKakaoLogin = () => {
         window.location.href = `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/kakao/login`;
     };
 
-    if (isSurveyed) {
-        return (
-            <PlanInfoLoggedIn
-                username={username}
-                planName={selectedPlan?.name ?? "알 수 없음"}
-                price={selectedPlan?.price ?? "0원"}
-                voice={selectedPlan?.call ?? "-"}
-                sms={selectedPlan?.sms ?? "-"}
-                network={selectedPlan?.tech ?? "-"}
-                dataAmount={selectedPlan?.data ?? "-"}
-                dataAfterLimit={selectedPlan?.speed ?? "-"}
-                extraVoice={selectedPlan?.extraCall ?? "-"}
-                portingFee={selectedPlan?.numberChangeFee ?? "-"}
-            />
-        );
-    }
 
     return (
         !isGuest && (
