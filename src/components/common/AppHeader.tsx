@@ -66,9 +66,9 @@ function AppHeader() {
       }`}
     >
       <div className="max-w-[1480px] flex items-center justify-between h-[56px] xl:h-[80px] mx-auto px-4 xl:px-[74px]">
-        <div className="text-lg font-bold">
+        <Link href="/" className="text-lg font-bold">
           <Image src="/logo.svg" alt="Logo" width={110} height={42} />
-        </div>
+        </Link>
 
         <div className="hidden md:flex items-center space-x-[50px]">
           <Link
