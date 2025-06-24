@@ -11,10 +11,8 @@ import {
 } from "@/components/ui/select";
 import { useSurveyStore } from "@/stores/surveyStore";
 import { useGetPlan } from "@/hooks/useGetPlan";
-import { cn } from "@/lib/utils";
-import { TypeOfSelector } from "@/types/survey";
 
-export function SelectCarrier({type}: TypeOfSelector) {
+export function SelectCarrier() {
   const { data, setField, setPlanList } = useSurveyStore();
   const { data: plans } = useGetPlan(data.telecomProvider);
 
@@ -34,10 +32,10 @@ export function SelectCarrier({type}: TypeOfSelector) {
   
   return (
     <div>
-      <p className={cn("font-bold text-[18px] mb-3", type === "myPlan" && "hidden")}>통신사 선택</p>
+      <p className="font-bold text-[18px] mb-3">통신사 선택</p>
       <Select value={data.telecomProvider} onValueChange={handleCarrierChange}>
-        <SelectTrigger className={cn("w-[260px] text-[16px] px-3 py-6 cursor-pointer", type === "myPlan" && "w-[136px] border border-[#F7ADC3] text-[#EF3E7D] text-[18px] md:text-[20px] rounded-md  font-bold text-[#EF3E7D] bg-white")}>
-          <SelectValue placeholder={type === "myPlan" ? "통신사" : "통신사를 선택해 주세요"} />
+        <SelectTrigger className="w-[260px] text-[16px] px-3 py-6">
+          <SelectValue placeholder="통신사를 선택해 주세요" />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>

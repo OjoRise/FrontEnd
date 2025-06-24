@@ -1,5 +1,5 @@
 import { ApiPlan } from "@/types/plan";
-import { guestApi, api } from "@/lib/axios";
+import api from "@/lib/axios";
 import { SurveyRequest, SurveyResponse } from "@/types/survey";
 
 /**
@@ -11,7 +11,7 @@ import { SurveyRequest, SurveyResponse } from "@/types/survey";
  */
 export const Plans = async (telecomProvider: string): Promise<ApiPlan[]> => {
   try {
-    const response = await guestApi.get("/survey/plan", {
+    const response = await api.get("/survey/plan", {
       params: { telecom_provider: telecomProvider },
     });
     return response.data;

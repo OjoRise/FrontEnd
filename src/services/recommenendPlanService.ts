@@ -1,4 +1,4 @@
-import { api } from "@/lib/axios";
+import api from "@/lib/axios";
 import { usePlanStore } from "@/stores/usePlanStore";
 import { Plan } from "@/types/plan";
 

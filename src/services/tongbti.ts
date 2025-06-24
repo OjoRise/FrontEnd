@@ -1,4 +1,4 @@
-import { api } from "@/lib/axios";
+import api from "@/lib/axios";
 import { Question, TongBTIResultInfo } from "@/types/tongBTI";
 import { typeKeyMap } from "@/utils/tongbtiMap";
 

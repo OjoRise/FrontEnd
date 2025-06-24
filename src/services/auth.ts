@@ -1,12 +1,7 @@
-import {api} from "@/lib/axios";
+import api from "@/lib/axios";
 
 export const getIsSurveyed = async() => {
     const response = await api.get('/user');
-    return response.data;
-}
-
-export const getName = async() => {
-    const response = await api.get('/user/name');
     return response.data;
 }
 

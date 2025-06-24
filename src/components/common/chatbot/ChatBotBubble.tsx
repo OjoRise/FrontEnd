@@ -1,7 +1,6 @@
 "use client";
 import { memo, PropsWithChildren } from "react";
 import { format } from "date-fns";
-import Image from "next/image";
 
 interface ChatBotBubbleProp {
   teller: "user" | "chatbot";
@@ -37,7 +36,7 @@ function ChatBotBubble({
       >
         {teller === "chatbot" && teller !== prevTeller ? (
           <div className="flex w-fit h-fit items-end gap-1 mb-1 pb-0.5">
-            <Image width={30} height={30} src="/chatbot.svg" alt="chatbot" />
+            <img className="w-[30px] h-[30px]" src="/chatbot.svg" alt="chatbot" />
             <p className="font-[--font-pretendard] flex items-end leading-none text-[16px]">
               요플맨
             </p>
@@ -82,12 +81,11 @@ function ChatBotBubble({
               <br />
             </span>
           ) : item instanceof File ? (
-            <Image
+            <img
               key={i}
               src={URL.createObjectURL(item)}
               alt={item.name}
-              width={100}
-              height={150}
+              className="w-[100px] h-[150px]"
             />
           ) : (
             <a

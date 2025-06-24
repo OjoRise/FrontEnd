@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useGetIsSurveyedQuery } from "@/hooks/useGetUserInfo";
+import { useGetIsSurveyedQuery } from "@/hooks/useGetIsSurveyed";
 import { useQueryClient } from "@tanstack/react-query";
 import { handleLoginSuccess } from "@/services/initialSetting";
 

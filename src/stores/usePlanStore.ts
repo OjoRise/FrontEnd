@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { Plan } from "@/types/plan";
+import type { MyPlan, Plan } from "@/types/plan";
 
 interface PlanStore {
   isCompareWithMine: boolean;
@@ -16,6 +16,15 @@ interface PlanStore {
   likedPlans: Plan[];
   setLikedPlans: (plans: Plan[]) => void;
   removeLikedPlan: (title: string) => void;
+}
+
+interface MyPlanStore {
+  username: string | null;
+  isGuest: boolean;
+  selectedPlan: MyPlan | null;
+  setUsername: (name: string | null) => void;
+  setGuest: (value: boolean) => void;
+  setSelectedPlan: (plan: MyPlan | null) => void;
 }
 
 export const usePlanStore = create<PlanStore>((set, get) => ({
@@ -66,4 +75,13 @@ export const usePlanStore = create<PlanStore>((set, get) => ({
     set((state) => ({
       likedPlans: state.likedPlans.filter((plan) => plan.name !== title),
     })),
+}));
+
+export const useMyPlanStore = create<MyPlanStore>((set) => ({
+  username: null,
+  isGuest: false,
+  selectedPlan: null,
+  setUsername: (name) => set({ username: name }),
+  setGuest: (value) => set({ isGuest: value }),
+  setSelectedPlan: (plan) => set({ selectedPlan: plan }),
 }));

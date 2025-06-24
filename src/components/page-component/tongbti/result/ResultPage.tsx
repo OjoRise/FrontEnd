@@ -9,7 +9,6 @@ import ShareButton from "@/components/common/button/ShareButton";
 import { fetchTongBTIInfo } from "@/services/tongbti";
 import { typeKeyMap } from "@/utils/tongbtiMap";
 import PlanSummaryCard from "./PlanSummaryCard";
-import Image from "next/image";
 
 export default function ResultPage() {
   const { resultInfo, setResultInfo } = useResultStore();
@@ -24,7 +23,6 @@ export default function ResultPage() {
           setResultInfo(info);
         } catch (err) {
           alert("결과를 불러오는 데 실패했습니다.");
-          console.error(err);
           router.replace("/tongbti");
         }
       }
@@ -46,10 +44,8 @@ export default function ResultPage() {
       <div className="h-screen bg-[#fcff63]/20 flex flex-col items-center pt-10 px-4">
         <h2 className="font-bold text-[18px] text-gray-100/60 mt-20 mb-2">나의 통BTI는</h2>
         <h1 className="font-bold text-[32px] text-[#FF008C] mb-4">{resultInfo.tongName}</h1>
-        <Image 
+        <img
           src={`/TongBTI/${typeKey}.svg`}
-          width={289}
-          height={289}
           alt={resultInfo.tongName}
           className="w-44 h-auto mb-3"
         />

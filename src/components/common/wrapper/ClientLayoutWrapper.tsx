@@ -7,7 +7,7 @@ import { ToastContainer } from "react-toastify";
 import LinearProgress from "@/components/common/progress/LinearProgress";
 import ChatBotModal from "@/components/common/chatbot/ChatBotModal";
 import { useAuthStore } from "@/stores/authStore";
-import { useGetIsSurveyedQuery } from "@/hooks/useGetUserInfo";
+import { useGetIsSurveyedQuery } from "@/hooks/useGetIsSurveyed";
 import { isAccessTokenExpired } from "@/lib/auth";
 import { useRefreshToken } from "@/hooks/useRefreshToken";
 

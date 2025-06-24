@@ -12,9 +12,9 @@ export default function SelectedPlanViewer() {
     <section className="mt-10">
       <h2 className="text-2xl font-bold mb-4">선택한 요금제</h2>
       <div className="flex flex-col gap-2">
-        {selectedPlans.map((plan,index) => (
+        {selectedPlans.map((plan) => (
           <div
-            key={`${plan}_${index}`}
+            key={plan.name}
             className="px-10 py-6 rounded-xl bg-white shadow-md text-xl font-semibold text-center w-fit"
           >
             {plan.name}

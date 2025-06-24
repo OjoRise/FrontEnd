@@ -1,4 +1,4 @@
-import { api } from "@/lib/axios";
+import api from "@/lib/axios";
 import { fetchRecommendedPlans } from "./recommenendPlanService";
 import { fetchLikedPlans } from "./dipPlanService";
 

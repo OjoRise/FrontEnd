@@ -13,9 +13,4 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-const guestApi = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
-  withCredentials: true,
-});
-
-export { api, guestApi };
+export default api;

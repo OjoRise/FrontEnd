@@ -15,7 +15,3 @@ export interface SurveyResponse {
   familyBundle: string;
   familyNum: string;
 }
-
-export type TypeOfSelector = {
-  type: 'myPlan' | 'survey'
-}

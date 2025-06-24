@@ -1,4 +1,4 @@
-import {api} from "@/lib/axios";
+import api from "@/lib/axios";
 import { DipCardPlan } from "@/types/plan";
 
 export const fetchBrowsePlans = async ({ isOnline, page }: { isOnline: boolean; page: number }) => {

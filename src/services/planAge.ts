@@ -1,4 +1,4 @@
-import { api } from "@/lib/axios";
+import api from "@/lib/axios";
 
 /**
  * 요금제 나이 테스트 결과를 조회합니다.
