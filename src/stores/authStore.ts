@@ -15,12 +15,15 @@ type AuthState = {
 
 export const useAuthStore = create<AuthState>((set) => ({
     isSurveyed: null,
-    isGuest: null,
+    isGuest: typeof window !== "undefined" ? JSON.parse(localStorage.getItem("isGuest") ?? "null") : null,
     selectedPlan: null,
 
     login: () => set({ isGuest: false, isSurveyed: true}),
     logout: () => set({ isGuest: null, isSurveyed: null}),
     setIsSurveyed: (state: boolean) => set({ isSurveyed: state }),
-    setIsGuest:(state: boolean) => set({ isGuest: state }),
+    setIsGuest:(state: boolean) => {
+        localStorage.setItem("isGuest", JSON.stringify(state));
+        set({ isGuest: state });
+    },
     setSelectedPlan: (plan) => set({ selectedPlan: plan }),
 }));

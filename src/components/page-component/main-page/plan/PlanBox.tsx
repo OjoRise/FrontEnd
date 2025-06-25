@@ -6,6 +6,8 @@ import { useAuthStore } from "@/stores/authStore";
 export default function PlanBox() {
   const { isGuest, isSurveyed } = useAuthStore();
 
+  if (isGuest === null && isSurveyed === null) return null;
+
   if (isSurveyed) {
     return (
         <PlanInfoLoggedIn/>

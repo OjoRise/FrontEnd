@@ -6,7 +6,9 @@ import CompareModeToggle from "./compare-plans/CompareModeToggle";
 import LikedPlansList from "./compare-plans/LikedPlansList";
 import RecommendedPlanList from "./compare-plans/RecommendedPlanList";
 import SelectedPlanViewer from "./compare-plans/SelectedPlanViewer";
-import PlanBox from "./plan/PlanBox";
+import dynamic from "next/dynamic";
+
+const PlanBox = dynamic(() => import("./plan/PlanBox"), { ssr: false });
 
 export default function MainPage() {
   return (
