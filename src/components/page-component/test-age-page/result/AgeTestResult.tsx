@@ -59,7 +59,7 @@ export default function AgeTestResult() {
 
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const shareUrl = `${baseUrl}/test-plan-age/result?userAge=${userAge}&resultAge=${resultAge}`;
-  const imageUrl = `${baseUrl}/planAge/${data?.result.age}.png`;
+  const imageUrl = `${baseUrl}/${data?.result.age || "default.png"}`;
 
   return (
     <>

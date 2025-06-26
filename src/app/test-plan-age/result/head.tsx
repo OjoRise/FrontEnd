@@ -6,7 +6,7 @@ export default function Head() {
   const resultAge = typeKey.get("resultAge") || "10대";
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const url = `${baseUrl}/test-plan-age/result/${typeKey}`;
-  const imageUrl = `${baseUrl}/planAge/${typeKey}.png`;
+  const imageUrl = `${baseUrl}/planAge/${typeKey}.svg`;
 
   return (
     <>
